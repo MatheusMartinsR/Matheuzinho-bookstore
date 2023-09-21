@@ -1,9 +1,6 @@
 package br.com.fiap;
 
-import br.com.fiap.domain.entity.Author;
-import br.com.fiap.domain.entity.Book;
-import br.com.fiap.domain.entity.PessoaFisica;
-import br.com.fiap.domain.entity.PessoaJuridica;
+import br.com.fiap.domain.entity.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -62,9 +59,18 @@ public class Main {
         System.out.println( holding );
         System.out.println( livro );
 
+        Main main = new Main();
+
+        main.findAll(manager);
+
         manager.close();
         factory.close();
 
+    }
+
+
+    public  void findAll(EntityManager manager){
+        manager.createQuery("FROM Pessoa").getResultList().forEach(System.out::println);
     }
 
     private static Map<String, Object> getProperties() {
